@@ -17,28 +17,26 @@ function LangPref() {
     }
 
     return (
-        <>
-            <Box component="section" sx={{ p: 2, display: 'flex', flexDirection: 'column', textAlign: 'center', gap: 2 }}>
-                <Box component="img"
-                    src={krishiLogo}
-                    alt="Krishi-Logo"
-                    sx={{ width: 110, height: 110, mx: 'auto' }}
-                />
-                <Box component="div">
-                    <Typography variant="h5" component="h2" sx={{ fontWeight: 'bold' }}>
-                        Choose your language preference
-                    </Typography>
-                    <Typography variant="h5" component="h2" sx={{ fontWeight: 'bold' }}>
-                        अपनी भाषा का चयन करें
-                    </Typography>
-                </Box>
-                <Box component="div" sx={{ px: 18, py: 5, display: 'flex', gap: 2, justifyContent: "space-between" }}>
-                    {langData.map(lang => {
-                        return <LanguageSelCard name={lang.Name} desc={lang.Description} desc2={lang.Description2} onClick={() => handleChoice(lang.Name)}/>
-                    })}
-                </Box>
+        <Box component="section" sx={{ p: 2, display: 'flex', flexDirection: 'column', textAlign: 'center', gap: 2 }}>
+            <Box component="img"
+                src={krishiLogo}
+                alt="Krishi-Logo"
+                sx={{ width: 110, height: 110, mx: 'auto' }}
+            />
+            <Box component="div">
+                <Typography variant="h5" component="h2" sx={{ fontWeight: 'bold' }}>
+                    Choose your language preference
+                </Typography>
+                <Typography variant="h5" component="h2" sx={{ fontWeight: 'bold' }}>
+                    अपनी भाषा का चयन करें
+                </Typography>
             </Box>
-        </>
+            <Box component="div" sx={{ px: 18, py: 5, display: 'flex', gap: 2, justifyContent: "space-between" }}>
+                {langData.map(lang => {
+                    return <LanguageSelCard name={lang.Name} desc={lang.Description} desc2={lang.Description2} handleChoice={handleChoice} />
+                })}
+            </Box>
+        </Box>
     )
 }
 

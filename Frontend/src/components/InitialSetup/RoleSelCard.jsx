@@ -3,9 +3,9 @@ import { Card, CardContent, Typography, CardMedia } from '@mui/material';
 import Farmer from '../../assets/Farmer.jpg'
 import Buyer from '../../assets/Buyer.jpg'
 
-function RoleSelCard({ engName, hindiName }) {
+function RoleSelCard({ engName, hindiName, handleChoice }) {
     return (
-        <Card sx={{width: 320, height: 290, display: 'flex', flexDirection: 'column', textAlign: 'left', backgroundColor: 'grey.100', justifyContent: 'center', alignItems: 'center' }}>
+        <Card onClick={() => handleChoice(engName)} sx={{width: 320, height: 290, display: 'flex', flexDirection: 'column', textAlign: 'left', backgroundColor: 'grey.100', justifyContent: 'center', alignItems: 'center' }}>
             <CardMedia
                 component="img"
                 sx={{ width: '100%', height: '200px', objectFit: 'cover' }}

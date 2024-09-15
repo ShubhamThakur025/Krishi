@@ -33,7 +33,7 @@ function RoleSelection() {
             </Box>
             <Box sx={{ px: 18, py: 5, display: 'flex', gap: 2, justifyContent: "space-between" }}>
                 {roleData.map(role => {
-                    return < RoleSelCard engName={role.engTitle} hindiName={role.hindiTitle} onClick={() => handleChoice(role.engTitle)} />
+                    return < RoleSelCard engName={role.engTitle} hindiName={role.hindiTitle} handleChoice={handleChoice} />
                 })}
             </Box>
             <Box component="div">

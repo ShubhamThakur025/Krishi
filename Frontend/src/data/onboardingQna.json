@@ -1,0 +1,27 @@
+[
+    {
+        "id": 1,
+        "Question": "What is your name?",
+        "fieldName": "Name"
+    },
+    {
+        "id": 2,
+        "Question": "What is your phone number?",
+        "fieldName": "Phone"
+    },
+    {
+        "id": 3,
+        "Question": "Where are you from? Mention the city",
+        "fieldName": "City"
+    },
+    {
+        "id": 4,
+        "Question": "You're from which state?",
+        "fieldName": "State"
+    },
+    {
+        "id": 5,
+        "Question": "What are some of the crops you generally grow?",
+        "fieldName": "Crops"
+    }
+]

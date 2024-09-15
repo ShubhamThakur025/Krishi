@@ -3,14 +3,9 @@ import frontBg from '../assets/front-bg.jpg'
 import { Grid, Box, Typography, Button } from '@mui/material'
 import krishiLogo from "../assets/krishi-logo.png"
 import { useSelector } from 'react-redux'
+import { Link } from 'react-router-dom'
 
 function WelcomePage() {
-    const choices = useSelector(state => state.user.choices)
-
-    useEffect(() => {
-        console.log("Saved States:" , choices)
-    }, [choices])
-
     return (
         <Grid container sx={{ height: '100vh' }}>
             <Grid item xs={12} sm={6} sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
@@ -39,9 +34,11 @@ function WelcomePage() {
                         Welcome to <b>Krishi</b>, a trusted platform connecting farmers and buyers through contract farming. A mission to empower farmers with guaranteed markets and stable incomes!
                     </Typography>
                     <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                        <Button variant="contained" sx={{ alignSelf: 'flex-end', mt: 3 }}>
-                            Get Started
-                        </Button>
+                        <Link to={'/onboarding'}>
+                            <Button variant="contained" sx={{ alignSelf: 'flex-end', mt: 3 }}>
+                                Get Started
+                            </Button>
+                        </Link>
                         <Button variant="outlined" sx={{ alignSelf: 'flex-end', ml: 3 }}>
                             Learn More
                         </Button>

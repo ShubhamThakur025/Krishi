@@ -1,9 +1,9 @@
 import React from 'react'
 import { Card, CardContent, Typography } from '@mui/material';
 
-function LanguageSelCard({ name, desc, desc2 }) {
+function LanguageSelCard({ name, desc, desc2, handleChoice }) {
     return (
-        <Card sx={{ p: 1, width: 320, height: 290, display: 'flex', textAlign: 'left', backgroundColor: 'grey.100', justifyContent: 'center', alignItems: 'center' }}>
+        <Card onClick={() => handleChoice(name)} sx={{ p: 1, width: 320, height: 290, display: 'flex', textAlign: 'left', backgroundColor: 'grey.100', justifyContent: 'center', alignItems: 'center' }}>
             <CardContent>
                 <Typography gutterBottom variant="h4" component="div" sx={{ fontWeight: 'bold' }}>
                     {name}

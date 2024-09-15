@@ -4,8 +4,8 @@ export const userSlice = createSlice({
     name: 'user',
     initialState: {
         choices: {
-            isFarmer: true,
-            language: ''
+            language: '',
+            role: ''
         }
     },
     reducers: {
