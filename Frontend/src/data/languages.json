@@ -1,0 +1,12 @@
+[
+    {
+        "Name": "English",
+        "Description": "Choose English as the language for the application.",
+        "Description2": " You can change later in the settings!"
+    },
+    {
+        "Name": "हिंदी",
+        "Description": "अपनी भाषा का चयन करें",
+        "Description2": "आप इसे बाद मे सेटिंग्स से बदल सकते है"
+    }
+]
