@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux'
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { Box, Typography, Button, Card } from '@mui/material';
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
+import { Link } from 'react-router-dom';
 
 function UserInfo() {
     const choices = useSelector(state => state.user.choices)
@@ -15,11 +16,12 @@ function UserInfo() {
                 </Typography>
                 <Typography variant="body1" sx={{ color: 'text.secondary' }}>
                     {choices.role} <br />
+                    {choices.Category && choices.Category} <br />
                     {choices.City}, {choices.State}
                 </Typography>
                 <Box sx={{ display: 'flex', justifyContent: 'space-around', flexWrap: 'wrap', mx: 'auto' }}>
                     {choices.Crops && choices.Crops.map((crop, index) => (
-                        <Typography key={crop} variant="body1" sx={{ color: 'text.secondary', mr:0.6}}>
+                        <Typography key={crop} variant="body1" sx={{ color: 'text.secondary', mr: 0.6 }}>
                             {crop}
                         </Typography>
                     ))}
@@ -27,7 +29,7 @@ function UserInfo() {
                 <Typography variant="body2" sx={{ color: 'text.secondary', width: 300, my: 2 }}>
                     We shall be proceeding towards setting up an account for you. Thus, you agree to the terms and conditions that are listed below
                 </Typography>
-                <Button variant="contained" sx={{ width: 200, mx: 'auto', mt: 3 }}>Submit <NavigateNextIcon /></Button>
+                <Link to={'/dashboard'}><Button variant="contained" sx={{ width: 200, mx: 'auto', mt: 3 }}>Submit <NavigateNextIcon /></Button></Link>
             </Card>
         </Box>
     )
