@@ -36,7 +36,7 @@ const CropSupply = sequelize.define("CropSupply", {
         type: DataTypes.STRING
     },
     bidderBuyers: {
-        type: DataTypes.TEXT // Store an array of IDs as JSON or string
+        type: DataTypes.TEXT
     }
 });
 
