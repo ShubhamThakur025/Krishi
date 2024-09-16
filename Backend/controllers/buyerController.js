@@ -1,8 +1,6 @@
 const Buyer = require("../models/buyerSchema")
 
 const registerBuyer = async (req, res) => {
-  console.log("Headers: ", req.headers);  // Log headers
-  console.log("Request Body: ", req.body);  // Log body
 
     try {
         
