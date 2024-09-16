@@ -7,8 +7,10 @@ import MilitaryTechIcon from '@mui/icons-material/MilitaryTech';
 import EmojiEventsIcon from '@mui/icons-material/EmojiEvents';
 import Footer from '../Footer';
 import { Link } from 'react-router-dom'
+import { useSelector } from 'react-redux';
 
 function UserDashboard() {
+    const role = useSelector(state => state.user.choices.role)
     return (
         <>
             <Box>
@@ -34,18 +36,18 @@ function UserDashboard() {
                     </Grid>
                     <Grid item xs={12} sm={6} sx={{ p: 3, mt: 3 }}>
                         <Typography variant="h2" component="h2" sx={{ textAlign: 'left', fontWeight: 'bold' }} >
-                            Sell Your
+                            {role === 'Farmer' ? 'Sell Your' : 'Buy'}
                         </Typography>
                         <Typography variant="h2" color="primary" component="h2" sx={{ textAlign: 'left', fontWeight: 'bold' }}>
                             Crops Here!
                         </Typography>
-                        <Box sx={{ backgroundColor: "grey.800", color: "white", p: 3, my: 1, borderRadius: 2, width: ['30vw']}}>
+                        <Box sx={{ backgroundColor: "grey.800", color: "white", p: 3, my: 1, borderRadius: 2, width: ['30vw'] }}>
                             <Typography variant="body2" component="body1" color='grey.100'>
                                 Bid and negotiate your crops through here. Give a questionnaire and a tailored list of buyers is ready!
                             </Typography>
                         </Box>
                         <Link to='/GetInfo'>
-                        <Button variant="contained" sx={{ width: 200, mx: 'auto', my: 3 }} >Sell Crops</Button></Link>
+                            <Button variant="contained" sx={{ width: 200, mx: 'auto', my: 3 }} >{role === 'Farmer' ? 'Sell Your' : 'Buy'} Crops</Button></Link>
                     </Grid>
                 </Grid>
                 <Box sx={{ color: '#fcb603', width: "100px", height: "100px", mx: 'auto' }}>
