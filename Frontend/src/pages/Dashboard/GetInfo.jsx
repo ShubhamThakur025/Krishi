@@ -1,23 +1,36 @@
+
 import React, { useState } from 'react';
 import { Container, TextField, Button, Typography, Box, Card, CardContent } from '@mui/material';
+import { useNavigate } from 'react-router-dom'; 
 import krishiLogo from "../../assets/krishi-logo.png";
 import questionsData from '../../data/CropInfo.json';
 import theme from '../../Theme';
-
 
 const GetInfo = () => {
     const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
     const [inputValue, setInputValue] = useState('');
     const [responses, setResponses] = useState(Array(questionsData.length).fill(''));
 
+    const navigate = useNavigate(); 
+
     const handleNext = () => {
         if (inputValue.trim()) {
-            setResponses(responses.map((response, index) =>
+            const updatedResponses = responses.map((response, index) =>
                 index === currentQuestionIndex ? inputValue : response
-            ));
+            );
+            setResponses(updatedResponses);
             setInputValue('');
             setCurrentQuestionIndex(currentQuestionIndex + 1);
         }
+    };
+
+    const handleSubmit = () => {
+        const updatedResponses = responses.map((response, index) =>
+            index === currentQuestionIndex ? inputValue : response
+        );
+        setResponses(updatedResponses);
+
+        navigate('/filterBuyer', { state: { responses: updatedResponses } });
     };
 
     const handleChange = (event) => {
@@ -37,7 +50,6 @@ const GetInfo = () => {
                 alignItems: 'center',
                 height: '100vh',
                 p: 2,
-                // backgroundColor: theme.palette.secondary.main,
             }}
         >
             <Box
@@ -84,17 +96,31 @@ const GetInfo = () => {
                         />
                         {showNextButton && (
                             <Box sx={{ mt: 2 }}>
-                                <Button
-                                    variant="contained"
-                                    color="primary"
-                                    onClick={handleNext}
-                                    sx={{
-                                        backgroundColor: theme.palette.primary.main,
-                                        '&:hover': { backgroundColor: theme.palette.primary.dark }
-                                    }}
-                                >
-                                    {isLastQuestion ? 'Submit' : 'Next Question'}
-                                </Button>
+                                {isLastQuestion ? (
+                                    <Button
+                                        variant="contained"
+                                        color="primary"
+                                        onClick={handleSubmit}
+                                        sx={{
+                                            backgroundColor: theme.palette.primary.main,
+                                            '&:hover': { backgroundColor: theme.palette.primary.dark }
+                                        }}
+                                    >
+                                        Submit
+                                    </Button>
+                                ) : (
+                                    <Button
+                                        variant="contained"
+                                        color="primary"
+                                        onClick={handleNext}
+                                        sx={{
+                                            backgroundColor: theme.palette.primary.main,
+                                            '&:hover': { backgroundColor: theme.palette.primary.dark }
+                                        }}
+                                    >
+                                        Next Question
+                                    </Button>
+                                )}
                             </Box>
                         )}
                     </Box>
@@ -105,3 +131,4 @@ const GetInfo = () => {
 };
 
 export default GetInfo;
+

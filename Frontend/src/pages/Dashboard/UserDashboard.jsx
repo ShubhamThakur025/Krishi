@@ -44,7 +44,7 @@ function UserDashboard() {
                                 Bid and negotiate your crops through here. Give a questionnaire and a tailored list of buyers is ready!
                             </Typography>
                         </Box>
-                        <Link to='/GetInfo'>
+                        <Link to='/getInfo'>
                         <Button variant="contained" sx={{ width: 200, mx: 'auto', my: 3 }} >Sell Crops</Button></Link>
                     </Grid>
                 </Grid>
