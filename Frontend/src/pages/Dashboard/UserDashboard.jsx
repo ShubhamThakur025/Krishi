@@ -6,6 +6,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import MilitaryTechIcon from '@mui/icons-material/MilitaryTech';
 import EmojiEventsIcon from '@mui/icons-material/EmojiEvents';
 import Footer from '../Footer';
+import { Link } from 'react-router-dom'
 
 function UserDashboard() {
     return (
@@ -23,7 +24,7 @@ function UserDashboard() {
                     < TextField color="primary" label="Search Something" sx={{ width: "70%", my: 3, backgroundColor: "grey.100" }} />
                     <SearchIcon sx={{ width: 50, height: 50, color: 'grey.700', ml: 3 }} />
                 </Box>
-                <Grid container sx={{ width: "100vw" }}>
+                <Grid container sx={{ width: "90vw" }}>
                     <Grid item xs={12} sm={6} sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                         <Box component="img"
                             src={banner}
@@ -38,12 +39,13 @@ function UserDashboard() {
                         <Typography variant="h2" color="primary" component="h2" sx={{ textAlign: 'left', fontWeight: 'bold' }}>
                             Crops Here!
                         </Typography>
-                        <Box sx={{ backgroundColor: "grey.800", color: "white", p: 3, my: 1, borderRadius: 2 }}>
+                        <Box sx={{ backgroundColor: "grey.800", color: "white", p: 3, my: 1, borderRadius: 2, width: ['30vw']}}>
                             <Typography variant="body2" component="body1" color='grey.100'>
                                 Bid and negotiate your crops through here. Give a questionnaire and a tailored list of buyers is ready!
                             </Typography>
                         </Box>
-                        <Button variant="contained" sx={{ width: 200, mx: 'auto', my: 3 }} >Sell Crops</Button>
+                        <Link to='/GetInfo'>
+                        <Button variant="contained" sx={{ width: 200, mx: 'auto', my: 3 }} >Sell Crops</Button></Link>
                     </Grid>
                 </Grid>
                 <Box sx={{ color: '#fcb603', width: "100px", height: "100px", mx: 'auto' }}>
