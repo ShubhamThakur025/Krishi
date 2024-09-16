@@ -1,16 +1,21 @@
 [
     {
-        "id" : 1,
-        "Question": "how much crop do you want to sell?",
+        "id": 1,
+        "Question": "What crop do you want to sell?",
+        "fieldName": "Crop"
+    },
+    {
+        "id": 2,
+        "Question": "How much crop do you want to sell?",
         "fieldName": "Quantity"
     },
     {
-        "id" : 2,
+        "id": 3,
         "Question": "What is your price range?",
         "fieldName": "Price range"
     },
     {
-        "id" : 3,
+        "id": 4,
         "Question": "In how much time do you want the crop?",
         "fieldName": "Time"
     }
