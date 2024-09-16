@@ -38,8 +38,13 @@ function Question({ questionItem, questionIndex, setQuestionIndex }) {
         setBuyerCategory(e.target.value)
     }
 
+    const showNextButton = textInput.trim() !== '' || selectedCrops.length;
+
     return (
-        <Box component="div" sx={{ p: 2, width: "40vw", mx: "auto", display: 'flex', flexDirection: 'column', textAlign: 'center', gap: 2 }}>
+        <Box component="div" sx={{
+            p: 3, width: "40vw", mx: "auto", display: 'flex', flexDirection: 'column', textAlign: 'center', gap: 2, backgroundColor: '#f5f5f5',
+            boxShadow: 3
+        }}>
             <Typography variant="h5" component="h2" sx={{ fontWeight: 'bold' }}>
                 {questionItem.Question}
             </Typography>
@@ -70,7 +75,11 @@ function Question({ questionItem, questionIndex, setQuestionIndex }) {
                     < TextField label={[questionItem.fieldName]} color="primary" value={textInput} onChange={(e) => setTextInput(e.target.value)} />
                 )
             }
-            <Button variant="contained" sx={{ width: 200, mx: 'auto' }} onClick={handleChoice}>Next <NavigateNextIcon /></Button>
+            {showNextButton ?
+                <Button variant="contained" sx={{ width: 200, mx: 'auto' }} onClick={handleChoice}>Next <NavigateNextIcon /></Button>
+                : null
+            }
+
         </Box>
     )
 }
