@@ -2,26 +2,37 @@
     {
         "id": 1,
         "Question": "What is your name?",
-        "fieldName": "Name"
+        "fieldName": "Name",
+        "role": "general"
     },
     {
         "id": 2,
         "Question": "What is your phone number?",
-        "fieldName": "Phone"
+        "fieldName": "Phone",
+        "role": "general"
     },
     {
         "id": 3,
-        "Question": "Where are you from? Mention the city",
-        "fieldName": "City"
+        "Question": "You're from which state?",
+        "fieldName": "State",
+        "role": "general"
     },
     {
         "id": 4,
-        "Question": "You're from which state?",
-        "fieldName": "State"
+        "Question": "You're from which district?",
+        "fieldName": "City",
+        "role": "general"
     },
     {
         "id": 5,
-        "Question": "What are some of the crops you generally grow?",
-        "fieldName": "Crops"
+        "Question": "Which crops do you grow or deal with?",
+        "fieldName": "Crops",
+        "role": "general"
+    },
+    {
+        "id": 6,
+        "Question": "For buyers: Are you small-scale or wholesale?",
+        "fieldName": "Category",
+        "role": "buyer"
     }
 ]
