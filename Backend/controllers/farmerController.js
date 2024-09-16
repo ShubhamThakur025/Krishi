@@ -1,7 +1,6 @@
-const Farmer = require("../models/Farmer"); 
+const Farmer = require("../models/farmerSchema"); 
 
-
-const registerFarmer = async (req, res) => {
+const registerFarmer = async (req, res) => {  
   try {
     
     const { name, mobile, photo, generalCrops, location } = req.body;
