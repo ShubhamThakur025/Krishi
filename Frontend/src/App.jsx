@@ -14,6 +14,8 @@ import UserInfo from './pages/InitialSetup/UserInfo.jsx'
 import UserDashboard from './pages/Dashboard/UserDashboard.jsx'
 import GetInfo from './pages/Dashboard/GetInfo.jsx';
 import FilterBuyer from './pages/Dashboard/FilterBuyer.jsx'
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   return (
@@ -27,9 +29,10 @@ function App() {
             <Route path='/onboarding' element={<Onboarding />} />
             <Route path='/finish' element={<UserInfo />} />
             <Route path='/dashboard' element={<UserDashboard />} />
-            <Route path='/getInfo' element={<GetInfo/>}/>
+            <Route path='/getInfo' element={<GetInfo />} />
             <Route path='/filterBuyer' element={<FilterBuyer/>}/>
           </Routes>
+          <ToastContainer />
         </Container>
       </ThemeProvider>
     </>
