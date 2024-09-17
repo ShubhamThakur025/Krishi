@@ -1,6 +1,3 @@
-
-
-
 import './App.css'
 import LangPref from './pages/InitialSetup/LangPref'
 import { Container } from '@mui/material'
@@ -12,8 +9,9 @@ import { Route, Routes } from 'react-router-dom';
 import Onboarding from './pages/InitialSetup/Onboarding.jsx'
 import UserInfo from './pages/InitialSetup/UserInfo.jsx'
 import UserDashboard from './pages/Dashboard/UserDashboard.jsx'
-import GetInfo from './pages/Dashboard/GetInfo.jsx';
+import GetInfo from './pages/Dashboard/GetInfo.jsx'
 import FilterBuyer from './pages/Dashboard/FilterBuyer.jsx'
+import Profile from './pages/Dashboard/Profile.jsx'
 
 function App() {
   return (
@@ -29,6 +27,7 @@ function App() {
             <Route path='/dashboard' element={<UserDashboard />} />
             <Route path='/getInfo' element={<GetInfo/>}/>
             <Route path='/filterBuyer' element={<FilterBuyer/>}/>
+            <Route path='/Profile' element={<Profile/>}/>
           </Routes>
         </Container>
       </ThemeProvider>

@@ -73,7 +73,7 @@ const GetInfo = () => {
                         )}
                         {currentQuestionIndex === 2 && (
                             <Range lowerVal={lowerVal} setLowerVal={setLowerVal} upperVal={upperVal} setUpperVal={setUpperVal} />
-                        )}
+                        )}  
                         {currentQuestionIndex === 3 && (
                             <TimeSlider setProductionTime={setProductionTime} productionTime={productionTime} />
                         )}
