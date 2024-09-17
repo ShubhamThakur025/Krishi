@@ -18,7 +18,9 @@ const Farmer = sequelize.define("Farmer", {
         type: DataTypes.STRING
     },
     generalCrops: {
-        type: DataTypes.TEXT 
+        type: DataTypes.JSON,
+        allowNull: false,
+        defaultValue: []
     },
     location: {
         type: DataTypes.STRING
@@ -28,12 +30,14 @@ const Farmer = sequelize.define("Farmer", {
         validate: { min: 1, max: 5 }
     },
     filledBids: {
-        type: DataTypes.TEXT,
-        defaultValue: '[]' 
+        type: DataTypes.JSON,
+        allowNull: false,
+        defaultValue: []
     },
     confirmedBids: {
-        type: DataTypes.TEXT,
-        defaultValue: '[]' 
+        type: DataTypes.JSON,
+        allowNull: false,
+        defaultValue: []
     }
 });
 

@@ -1,9 +1,11 @@
 const express = require('express');
+const cors = require('cors')
 const app = express();
 const sequelize = require('./config/db')
 const farmerRoutes = require('./routes/farmerRoutes')
 const buyerRoutes = require('./routes/buyerRoutes')
 
+app.use(cors())
 app.use(express.json());
 app.use('/farmer', farmerRoutes);
 app.use('/buyer', buyerRoutes);
