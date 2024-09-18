@@ -1,19 +1,41 @@
-import { Box, Typography, TextField, Button, Card, CardContent, CardMedia, Grid, List, ListItem, ListItemText, Divider } from '@mui/material';
-import React from 'react'
-import banner from '../../assets/dashboard-bg.jpg'
-import avatar from '../../assets/avatar.jpg'
+import { Box, Typography, TextField, Button, Card, CardContent, CardMedia, Grid, List, ListItem } from '@mui/material';
+import React from 'react';
+import banner from '../../assets/dashboard-bg.jpg';
+import avatar from '../../assets/avatar.jpg';
 import SearchIcon from '@mui/icons-material/Search';
 import MilitaryTechIcon from '@mui/icons-material/MilitaryTech';
 import EmojiEventsIcon from '@mui/icons-material/EmojiEvents';
 import Footer from '../Footer';
-import { Link } from 'react-router-dom'
 import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom'; // Use for navigation
 
 function UserDashboard() {
-    const role = useSelector(state => state.user.choices.role)
+    const role = useSelector(state => state.user.choices.role);
+    const currentUserId = useSelector(state => state.user.id); // Assuming user ID is stored in Redux
+    const navigate = useNavigate(); // Use for navigation
+
+    // Dummy list of dealers (can be replaced with actual dealer data)
+    const dealers = [
+        { id: 'farmer1', name: 'Farmer 1' },
+        { id: 'farmer2', name: 'Farmer 2' },
+        { id: 'farmer3', name: 'Farmer 3' }
+    ];
+
+    // Function to start the chat
+    const startChat = (dealerId) => {
+        // Navigate to the chat page with currentUserId and dealerId (targetUserId)
+        navigate(`/chat/${currentUserId}/${dealerId}`);
+    };
+
+    // Function to view all chats
+    const viewChats = () => {
+        navigate(`/my-chats/${currentUserId}`);
+    };
+
     return (
         <>
             <Box>
+                {/* Header Section */}
                 <Box sx={{ display: 'flex', mt: 3, justifyContent: 'center', alignItems: 'center' }}>
                     <Typography variant="h3" component="h3" color='primary' sx={{ fontWeight: 'bold' }}>
                         Krishi
@@ -21,11 +43,24 @@ function UserDashboard() {
                     <Typography variant="h3" component="h3" color='primary' sx={{ fontWeight: 'bold', ml: 3 }}>
                         कृषि
                     </Typography>
+
+                    {/* My Chats Button */}
+                    <Button 
+                        variant="outlined" 
+                        sx={{ position: 'absolute', right: '20px', top: '20px' }} 
+                        onClick={viewChats}
+                    >
+                        My Chats
+                    </Button>
                 </Box>
+
+                {/* Search Bar */}
                 <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                    < TextField color="primary" label="Search Something" sx={{ width: "70%", my: 3, backgroundColor: "grey.100" }} />
+                    <TextField color="primary" label="Search Something" sx={{ width: "70%", my: 3, backgroundColor: "grey.100" }} />
                     <SearchIcon sx={{ width: 50, height: 50, color: 'grey.700', ml: 3 }} />
                 </Box>
+
+                {/* Main Section */}
                 <Grid container sx={{ width: "90vw" }}>
                     <Grid item xs={12} sm={6} sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                         <Box component="img"
@@ -46,74 +81,83 @@ function UserDashboard() {
                                 Bid and negotiate your crops through here. Give a questionnaire and a tailored list of buyers is ready!
                             </Typography>
                         </Box>
-                        <Link to='/GetInfo'>
-                            <Button variant="contained" sx={{ width: 200, mx: 'auto', my: 3 }} >{role === 'Farmer' ? 'Sell Your' : 'Buy'} Crops</Button></Link>
+                        <Button variant="contained" sx={{ width: 200, mx: 'auto', my: 3 }}>
+                            {role === 'Farmer' ? 'Sell Your' : 'Buy'} Crops
+                        </Button>
                     </Grid>
                 </Grid>
+
+                {/* Best Users Section */}
                 <Box sx={{ color: '#fcb603', width: "100px", height: "100px", mx: 'auto' }}>
                     <EmojiEventsIcon sx={{ color: '#fcb603', width: "100px", height: "100px" }} />
                 </Box>
-                <Typography variant="h2" component="h2" sx={{ textAlign: 'center', fontWeight: 'bold', mb: 3 }} >
+                <Typography variant="h2" component="h2" sx={{ textAlign: 'center', fontWeight: 'bold', mb: 3 }}>
                     Our Best Users
                 </Typography>
 
+                {/* List of Dealers */}
                 <Box sx={{ display: 'flex', alignItems: "center", justifyContent: "center" }}>
-                    {["Dealer 1", "Dealer 2", "Dealer 3"].map((dealer) => (
-                        <Card sx={{ backgroundColor: "grey.100", mx: 3, p: 3, width: 250 }}>
+                    {dealers.map((dealer) => (
+                        <Card sx={{ backgroundColor: "grey.100", mx: 3, p: 3, width: 250 }} key={dealer.id}>
                             <CardMedia
                                 component="img"
                                 image={avatar}
-                                alt="person"
+                                alt={dealer.name}
                             />
                             <CardContent>
                                 <Typography variant="h6" component="h3">
-                                    {dealer}
+                                    {dealer.name}
                                 </Typography>
                                 <Typography variant="body2" color="text.secondary">
                                     Best in the region, trusted by thousands.
                                 </Typography>
                             </CardContent>
-                            <Button variant="contained" sx={{ width: 200, mx: 'auto', my: 3 }} >Visit</Button>
+                            <Button
+                                variant="contained"
+                                sx={{ width: 200, mx: 'auto', my: 3 }}
+                                onClick={() => startChat(dealer.id)} // Start a chat when "Visit" is clicked
+                            >
+                                Start Chat
+                            </Button>
                         </Card>
                     ))}
                 </Box>
 
+                {/* Top Ten Users Section */}
                 <Box sx={{ display: 'flex', mt: 4, gap: 2 }}>
                     <Box sx={{ width: '30%', pr: 2 }}>
                         <MilitaryTechIcon sx={{ color: '#fcb603', width: "100px", height: "100px", mx: 3 }} />
-                        <Typography variant="h3" component="h3" sx={{ textAlign: 'left', fontWeight: 'bold', mx: 5 }} >
+                        <Typography variant="h3" component="h3" sx={{ textAlign: 'left', fontWeight: 'bold', mx: 5 }}>
                             Our <br />Top <br /> Ten Users
                         </Typography>
                     </Box>
                     <Box sx={{ width: '70%' }}>
                         <List>
                             {["Dealer A", "Dealer B", "Dealer C", "Dealer D", "Dealer E"].map((person, index) => (
-                                <>
-                                    <ListItem>
-                                        <Card sx={{ display: 'flex', width: '100%', backgroundColor: "grey.100" }}>
-                                            <CardMedia
-                                                component="img"
-                                                sx={{ width: 100 }}
-                                                image={avatar}
-                                                alt={person}
-                                            />
-                                            <CardContent>
-                                                <Typography variant="h6">{person}</Typography>
-                                                <Typography variant="body2" color="text.secondary">
-                                                    Trusted by hundreds for quality and service.
-                                                </Typography>
-                                            </CardContent>
-                                        </Card>
-                                    </ListItem>
-                                </>
+                                <ListItem key={index}>
+                                    <Card sx={{ display: 'flex', width: '100%', backgroundColor: "grey.100" }}>
+                                        <CardMedia
+                                            component="img"
+                                            sx={{ width: 100 }}
+                                            image={avatar}
+                                            alt={person}
+                                        />
+                                        <CardContent>
+                                            <Typography variant="h6">{person}</Typography>
+                                            <Typography variant="body2" color="text.secondary">
+                                                Trusted by hundreds for quality and service.
+                                            </Typography>
+                                        </CardContent>
+                                    </Card>
+                                </ListItem>
                             ))}
                         </List>
                     </Box>
                 </Box>
-            </Box >
+            </Box>
             <Footer />
         </>
-    )
+    );
 }
 
-export default UserDashboard
+export default UserDashboard;

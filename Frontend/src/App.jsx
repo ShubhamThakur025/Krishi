@@ -10,6 +10,8 @@ import Onboarding from './pages/InitialSetup/Onboarding.jsx'
 import UserInfo from './pages/InitialSetup/UserInfo.jsx'
 import UserDashboard from './pages/Dashboard/UserDashboard.jsx'
 import GetInfo from './pages/Dashboard/GetInfo.jsx';
+import Chat from './components/Chat.jsx';
+import BiddingPage from './components/BiddingRoom.jsx'; 
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -26,6 +28,8 @@ function App() {
             <Route path='/finish' element={<UserInfo />} />
             <Route path='/dashboard' element={<UserDashboard />} />
             <Route path='/GetInfo' element={<GetInfo />} />
+            <Route path='/chat/:currentUserId/:targetUserId' element={<Chat />} />
+            <Route path="/bidding" element={<BiddingPage />} />
           </Routes>
           <ToastContainer />
         </Container>
@@ -34,4 +38,4 @@ function App() {
   )
 }
 
-export default App
+export default App;
