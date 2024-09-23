@@ -1,5 +1,5 @@
 import { Box, Typography, TextField, Button, Card, CardContent, CardMedia, Grid, List, ListItem } from '@mui/material';
-import React from 'react';
+import React, { useState, useEffect } from 'react';  // Import useState and useEffect
 import banner from '../../assets/dashboard-bg.jpg';
 import avatar from '../../assets/avatar.jpg';
 import SearchIcon from '@mui/icons-material/Search';
@@ -8,23 +8,50 @@ import EmojiEventsIcon from '@mui/icons-material/EmojiEvents';
 import Footer from '../Footer';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom'; // Use for navigation
+import axios from 'axios';  // Import axios to fetch data from backend
 
 function UserDashboard() {
     const role = useSelector(state => state.user.choices.role);
-    const currentUserId = useSelector(state => state.user.id); // Assuming user ID is stored in Redux
-    const navigate = useNavigate(); // Use for navigation
+    const currentUserId = useSelector(state => state.user.id);  // Assuming user ID is stored in Redux
+    const navigate = useNavigate();  // Use for navigation
 
-    // Dummy list of dealers (can be replaced with actual dealer data)
-    const dealers = [
-        { id: 'farmer1', name: 'Farmer 1' },
-        { id: 'farmer2', name: 'Farmer 2' },
-        { id: 'farmer3', name: 'Farmer 3' }
-    ];
+    const [farmers, setFarmers] = useState([]);  // State for storing fetched farmers
+    const [buyers, setBuyers] = useState([]);  // State for storing fetched buyers
+    const [searchTerm, setSearchTerm] = useState('');  // State for search term
+    const [isSearchTriggered, setIsSearchTriggered] = useState(false);  // State to control when search happens
+
+    // Fetch farmers and buyers from the backend when the component mounts
+    useEffect(() => {
+        axios.get('http://localhost:8080/farmer/list')
+            .then(response => {
+                setFarmers(response.data);
+            })
+            .catch(err => console.error("Error fetching farmers: ", err));
+
+        axios.get('http://localhost:8080/buyer/list')
+            .then(response => {
+                setBuyers(response.data);
+            })
+            .catch(err => console.error("Error fetching buyers: ", err));
+    }, []);
+
+    // Handle search input
+    const handleSearch = (event) => {
+        setSearchTerm(event.target.value);
+    };
+
+    // Function to trigger the search
+    const triggerSearch = () => {
+        setIsSearchTriggered(true);
+    };
+
+    // Function to filter farmers and buyers based on the search term
+    const filteredFarmers = farmers.filter(farmer => farmer.name.toLowerCase().includes(searchTerm.toLowerCase()));
+    const filteredBuyers = buyers.filter(buyer => buyer.name.toLowerCase().includes(searchTerm.toLowerCase()));
 
     // Function to start the chat
-    const startChat = (dealerId) => {
-        // Navigate to the chat page with currentUserId and dealerId (targetUserId)
-        navigate(`/chat/${currentUserId}/${dealerId}`);
+    const startChat = (userId) => {
+        navigate(`/chat/${currentUserId}/${userId}`);
     };
 
     // Function to view all chats
@@ -54,10 +81,90 @@ function UserDashboard() {
                     </Button>
                 </Box>
 
-                {/* Search Bar */}
-                <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                    <TextField color="primary" label="Search Something" sx={{ width: "70%", my: 3, backgroundColor: "grey.100" }} />
-                    <SearchIcon sx={{ width: 50, height: 50, color: 'grey.700', ml: 3 }} />
+                {/* Search Bar with Button */}
+                <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column' }}>
+                    <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                        <TextField 
+                            color="primary" 
+                            label="Search by Name" 
+                            value={searchTerm} 
+                            onChange={handleSearch}  // Add search handler
+                            sx={{ width: "70%", my: 3, backgroundColor: "grey.100" }} 
+                        />
+                        <Button
+                            variant="contained"
+                            color="primary"
+                            onClick={triggerSearch}  // Trigger the search manually when the button is clicked
+                            sx={{ ml: 2 }}
+                        >
+                            <SearchIcon />
+                        </Button>
+                    </Box>
+
+                    {/* Search Results */}
+                    {isSearchTriggered && searchTerm && (
+                        <Box sx={{ width: "90%", display: 'flex', flexWrap: 'wrap', justifyContent: 'center', mt: 2 }}>
+                            {filteredFarmers.length > 0 && (
+                                <Typography variant="h5" sx={{ width: '100%', textAlign: 'center', mb: 2 }}>
+                                    Farmers
+                                </Typography>
+                            )}
+                            {filteredFarmers.map(farmer => (
+                                <Card sx={{ backgroundColor: "grey.100", mx: 2, p: 3, width: 250 }} key={farmer.farmerId}>
+                                    <CardMedia
+                                        component="img"
+                                        image={avatar}
+                                        alt={farmer.name}
+                                    />
+                                    <CardContent>
+                                        <Typography variant="h6" component="h3">
+                                            {farmer.name}
+                                        </Typography>
+                                        <Typography variant="body2" color="text.secondary">
+                                            Best in the region, trusted by thousands.
+                                        </Typography>
+                                    </CardContent>
+                                    <Button
+                                        variant="contained"
+                                        sx={{ width: 200, mx: 'auto', my: 3 }}
+                                        onClick={() => startChat(farmer.farmerId)}  // Start a chat with the farmer's ID
+                                    >
+                                        Start Chat
+                                    </Button>
+                                </Card>
+                            ))}
+
+                            {filteredBuyers.length > 0 && (
+                                <Typography variant="h5" sx={{ width: '100%', textAlign: 'center', mt: 4, mb: 2 }}>
+                                    Buyers
+                                </Typography>
+                            )}
+                            {filteredBuyers.map(buyer => (
+                                <Card sx={{ backgroundColor: "grey.100", mx: 2, p: 3, width: 250 }} key={buyer.buyerId}>
+                                    <CardMedia
+                                        component="img"
+                                        image={avatar}
+                                        alt={buyer.name}
+                                    />
+                                    <CardContent>
+                                        <Typography variant="h6" component="h3">
+                                            {buyer.name}
+                                        </Typography>
+                                        <Typography variant="body2" color="text.secondary">
+                                            Best in the region, trusted by thousands.
+                                        </Typography>
+                                    </CardContent>
+                                    <Button
+                                        variant="contained"
+                                        sx={{ width: 200, mx: 'auto', my: 3 }}
+                                        onClick={() => startChat(buyer.buyerId)}  // Start a chat with the buyer's ID
+                                    >
+                                        Start Chat
+                                    </Button>
+                                </Card>
+                            ))}
+                        </Box>
+                    )}
                 </Box>
 
                 {/* Main Section */}
@@ -95,18 +202,18 @@ function UserDashboard() {
                     Our Best Users
                 </Typography>
 
-                {/* List of Dealers */}
-                <Box sx={{ display: 'flex', alignItems: "center", justifyContent: "center" }}>
-                    {dealers.map((dealer) => (
-                        <Card sx={{ backgroundColor: "grey.100", mx: 3, p: 3, width: 250 }} key={dealer.id}>
+                {/* List of Farmers and Buyers */}
+                <Box sx={{ display: 'flex', justifyContent: "center", mt: 4 }}>
+                    {farmers.map((farmer) => (
+                        <Card sx={{ backgroundColor: "grey.100", mx: 3, p: 3, width: 250 }} key={farmer.farmerId}>
                             <CardMedia
                                 component="img"
                                 image={avatar}
-                                alt={dealer.name}
+                                alt={farmer.name}
                             />
                             <CardContent>
                                 <Typography variant="h6" component="h3">
-                                    {dealer.name}
+                                    {farmer.name}
                                 </Typography>
                                 <Typography variant="body2" color="text.secondary">
                                     Best in the region, trusted by thousands.
@@ -115,7 +222,7 @@ function UserDashboard() {
                             <Button
                                 variant="contained"
                                 sx={{ width: 200, mx: 'auto', my: 3 }}
-                                onClick={() => startChat(dealer.id)} // Start a chat when "Visit" is clicked
+                                onClick={() => startChat(farmer.farmerId)}  // Start a chat with the farmer's ID
                             >
                                 Start Chat
                             </Button>
@@ -123,36 +230,32 @@ function UserDashboard() {
                     ))}
                 </Box>
 
-                {/* Top Ten Users Section */}
-                <Box sx={{ display: 'flex', mt: 4, gap: 2 }}>
-                    <Box sx={{ width: '30%', pr: 2 }}>
-                        <MilitaryTechIcon sx={{ color: '#fcb603', width: "100px", height: "100px", mx: 3 }} />
-                        <Typography variant="h3" component="h3" sx={{ textAlign: 'left', fontWeight: 'bold', mx: 5 }}>
-                            Our <br />Top <br /> Ten Users
-                        </Typography>
-                    </Box>
-                    <Box sx={{ width: '70%' }}>
-                        <List>
-                            {["Dealer A", "Dealer B", "Dealer C", "Dealer D", "Dealer E"].map((person, index) => (
-                                <ListItem key={index}>
-                                    <Card sx={{ display: 'flex', width: '100%', backgroundColor: "grey.100" }}>
-                                        <CardMedia
-                                            component="img"
-                                            sx={{ width: 100 }}
-                                            image={avatar}
-                                            alt={person}
-                                        />
-                                        <CardContent>
-                                            <Typography variant="h6">{person}</Typography>
-                                            <Typography variant="body2" color="text.secondary">
-                                                Trusted by hundreds for quality and service.
-                                            </Typography>
-                                        </CardContent>
-                                    </Card>
-                                </ListItem>
-                            ))}
-                        </List>
-                    </Box>
+                {/* List of Buyers */}
+                <Box sx={{ display: 'flex', justifyContent: "center", mt: 4 }}>
+                    {buyers.map((buyer) => (
+                        <Card sx={{ backgroundColor: "grey.100", mx: 3, p: 3, width: 250 }} key={buyer.buyerId}>
+                            <CardMedia
+                                component="img"
+                                image={avatar}
+                                alt={buyer.name}
+                            />
+                            <CardContent>
+                                <Typography variant="h6" component="h3">
+                                    {buyer.name}
+                                </Typography>
+                                <Typography variant="body2" color="text.secondary">
+                                    Best in the region, trusted by thousands.
+                                </Typography>
+                            </CardContent>
+                            <Button
+                                variant="contained"
+                                sx={{ width: 200, mx: 'auto', my: 3 }}
+                                onClick={() => startChat(buyer.buyerId)}  // Start a chat with the buyer's ID
+                            >
+                                Start Chat
+                            </Button>
+                        </Card>
+                    ))}
                 </Box>
             </Box>
             <Footer />

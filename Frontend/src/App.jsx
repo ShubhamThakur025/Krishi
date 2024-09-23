@@ -8,14 +8,26 @@ import theme from './Theme.js'
 import { Route, Routes } from 'react-router-dom';
 import Onboarding from './pages/InitialSetup/Onboarding.jsx'
 import UserInfo from './pages/InitialSetup/UserInfo.jsx'
-import UserDashboard from './pages/Dashboard/UserDashboard.jsx'
+import ConfirmationPage from './pages/ConfirmationPage.jsx';
+import ContractPage from './pages/ContractPage';
+import UserDashboard from './pages/Dashboard/UserDashboard.jsx';
 import GetInfo from './pages/Dashboard/GetInfo.jsx';
 import Chat from './components/Chat.jsx';
+import MyChats from './pages/MyChats.jsx';
 import BiddingPage from './components/BiddingRoom.jsx'; 
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
+  const dummyBidDetails = {
+    amount: '5000 USD',
+    crop: 'Wheat',
+    farmer: 'Farmer 1',
+    buyer: 'Buyer 1',
+    date: '2024-10-01',
+    location: 'City, State',
+    deliveryDate: '2024-11-10',
+  };
   return (
     <>
       <ThemeProvider theme={theme}>
@@ -29,6 +41,10 @@ function App() {
             <Route path='/dashboard' element={<UserDashboard />} />
             <Route path='/GetInfo' element={<GetInfo />} />
             <Route path='/chat/:currentUserId/:targetUserId' element={<Chat />} />
+            <Route path="/confirm" element={<ConfirmationPage bidDetails={dummyBidDetails} />} />
+            <Route path="/contract" element={<ContractPage contractDetails={dummyBidDetails} />} />
+            
+                <Route path="/my-chats/:userId" element={<MyChats />} /> 
             <Route path="/bidding" element={<BiddingPage />} />
           </Routes>
           <ToastContainer />
