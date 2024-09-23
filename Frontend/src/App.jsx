@@ -17,6 +17,7 @@ import MyChats from './pages/MyChats.jsx';
 import BiddingPage from './components/BiddingRoom.jsx'; 
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import UserAuth from './pages/UserAuth.jsx'
 
 function App() {
   const dummyBidDetails = {
@@ -33,7 +34,8 @@ function App() {
       <ThemeProvider theme={theme}>
         <Container maxWidth="xl" disableGutters >
           <Routes>
-            <Route path='/' element={<LangPref />} />
+            <Route path='/lang-pref' element={<LangPref />} />
+            <Route path='/' element={<UserAuth />} />
             <Route path='/role-selection' element={<RoleSelection />} />
             <Route path='/welcome' element={<WelcomePage />} />
             <Route path='/onboarding' element={<Onboarding />} />

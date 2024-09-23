@@ -1,0 +1,12 @@
+[
+    {
+        "Name": "Login",
+        "Description": "Login with an existing account",
+        "Description2": "मौजूदा खाते से लॉगिन करें"
+    },
+    {
+        "Name": "Register",
+        "Description": "Register as a new user",
+        "Description2": "नये उपयोगकर्ता के रूप में पंजीकरण करें"
+    }
+]

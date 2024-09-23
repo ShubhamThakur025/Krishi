@@ -1,63 +1,63 @@
-import { Box, Typography, TextField, Button, Card, CardContent, CardMedia, Grid, List, ListItem } from '@mui/material';
-import React, { useState, useEffect } from 'react';  // Import useState and useEffect
-import banner from '../../assets/dashboard-bg.jpg';
-import avatar from '../../assets/avatar.jpg';
-import SearchIcon from '@mui/icons-material/Search';
-import MilitaryTechIcon from '@mui/icons-material/MilitaryTech';
-import EmojiEventsIcon from '@mui/icons-material/EmojiEvents';
-import Footer from '../Footer';
-import { useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom'; // Use for navigation
-import axios from 'axios';  // Import axios to fetch data from backend
+import { Box, Typography, TextField, Button, Card, CardContent, CardMedia, Grid, List, ListItem } from '@mui/material'
+import React, { useState, useEffect } from 'react'
+import banner from '../../assets/dashboard-bg.jpg'
+import avatar from '../../assets/avatar.jpg'
+import SearchIcon from '@mui/icons-material/Search'
+import MilitaryTechIcon from '@mui/icons-material/MilitaryTech'
+import EmojiEventsIcon from '@mui/icons-material/EmojiEvents'
+import Footer from '../Footer'
+import { useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
+import axios from 'axios'  
 
 function UserDashboard() {
-    const role = useSelector(state => state.user.choices.role);
-    const currentUserId = useSelector(state => state.user.id);  // Assuming user ID is stored in Redux
-    const navigate = useNavigate();  // Use for navigation
+    const role = useSelector(state => state.user.choices.role)
+    const currentUserId = useSelector(state => state.user.id) 
+    const navigate = useNavigate() 
 
-    const [farmers, setFarmers] = useState([]);  // State for storing fetched farmers
-    const [buyers, setBuyers] = useState([]);  // State for storing fetched buyers
-    const [searchTerm, setSearchTerm] = useState('');  // State for search term
-    const [isSearchTriggered, setIsSearchTriggered] = useState(false);  // State to control when search happens
+    const [farmers, setFarmers] = useState([])  
+    const [buyers, setBuyers] = useState([]) 
+    const [searchTerm, setSearchTerm] = useState('') 
+    const [isSearchTriggered, setIsSearchTriggered] = useState(false)  // State to control when search happens
 
     // Fetch farmers and buyers from the backend when the component mounts
     useEffect(() => {
         axios.get('http://localhost:8080/farmer/list')
             .then(response => {
-                setFarmers(response.data);
+                setFarmers(response.data)
             })
-            .catch(err => console.error("Error fetching farmers: ", err));
+            .catch(err => console.error("Error fetching farmers: ", err))
 
         axios.get('http://localhost:8080/buyer/list')
             .then(response => {
-                setBuyers(response.data);
+                setBuyers(response.data)
             })
-            .catch(err => console.error("Error fetching buyers: ", err));
-    }, []);
+            .catch(err => console.error("Error fetching buyers: ", err))
+    }, [])
 
     // Handle search input
     const handleSearch = (event) => {
-        setSearchTerm(event.target.value);
-    };
+        setSearchTerm(event.target.value)
+    }
 
     // Function to trigger the search
     const triggerSearch = () => {
-        setIsSearchTriggered(true);
-    };
+        setIsSearchTriggered(true)
+    }
 
     // Function to filter farmers and buyers based on the search term
-    const filteredFarmers = farmers.filter(farmer => farmer.name.toLowerCase().includes(searchTerm.toLowerCase()));
-    const filteredBuyers = buyers.filter(buyer => buyer.name.toLowerCase().includes(searchTerm.toLowerCase()));
+    const filteredFarmers = farmers.filter(farmer => farmer.name.toLowerCase().includes(searchTerm.toLowerCase()))
+    const filteredBuyers = buyers.filter(buyer => buyer.name.toLowerCase().includes(searchTerm.toLowerCase()))
 
     // Function to start the chat
     const startChat = (userId) => {
-        navigate(`/chat/${currentUserId}/${userId}`);
-    };
+        navigate(`/chat/${currentUserId}/${userId}`)
+    }
 
     // Function to view all chats
     const viewChats = () => {
-        navigate(`/my-chats/${currentUserId}`);
-    };
+        navigate(`/my-chats/${currentUserId}`)
+    }
 
     return (
         <>
@@ -260,7 +260,7 @@ function UserDashboard() {
             </Box>
             <Footer />
         </>
-    );
+    )
 }
 
-export default UserDashboard;
+export default UserDashboard

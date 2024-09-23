@@ -41,6 +41,11 @@ const Buyer = sequelize.define("Buyer", {
         type: DataTypes.JSON,
         allowNull: false,
         defaultValue: []
+    },
+    postedRequirements: {
+        type: DataTypes.JSON,
+        allowNull: false,
+        defaultValue: [] 
     }
 });
 

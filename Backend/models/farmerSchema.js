@@ -38,6 +38,11 @@ const Farmer = sequelize.define("Farmer", {
         type: DataTypes.JSON,
         allowNull: false,
         defaultValue: []
+    },
+    filledRequirements: {
+        type: DataTypes.JSON,
+        allowNull: false,
+        defaultValue: []
     }
 });
 
