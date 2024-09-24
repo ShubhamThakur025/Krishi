@@ -21,7 +21,6 @@ import 'react-toastify/dist/ReactToastify.css'
 import UserAuth from './pages/UserAuth.jsx'
 import SearchResults from './pages/Dashboard/SearchResults.jsx'
 import UserProfile from './pages/UserProfile/UserProfile.jsx'
-import getCookie from './utils/getCookie'
 import { useDispatch } from 'react-redux'
 import { updateChoices } from './redux/slices/userSlice'
 import getUser from './utils/getUser.js'
@@ -40,7 +39,7 @@ function App() {
   const token = getUser()
   const dispatch = useDispatch()
   if (token) {
-    dispatch(updateChoices({ token }))
+    dispatch(updateChoices({ ...token }))
   }
 
   return (

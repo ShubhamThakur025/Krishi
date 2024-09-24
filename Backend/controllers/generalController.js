@@ -14,7 +14,7 @@ const loginUser = async (req, res) => {
         const farmer = await Farmer.findOne({ where: { mobile } });
         if (farmer) {
             const token = jwt.sign(
-                { id: farmer.farmerId, name: farmer.name, mobile: farmer.mobile },
+                { id: farmer.farmerId, name: farmer.name, mobile: farmer.mobile, role: 'farmer' },
                 process.env.JWT_SECRET,
                 { expiresIn: '24h' }
             );
@@ -24,7 +24,7 @@ const loginUser = async (req, res) => {
         const buyer = await Buyer.findOne({ where: { mobile } });
         if (buyer) {
             const token = jwt.sign(
-                { id: buyer.buyerId, name: buyer.name, mobile: buyer.mobile },
+                { id: buyer.buyerId, name: buyer.name, mobile: buyer.mobile, role: 'buyer' },
                 process.env.JWT_SECRET,
                 { expiresIn: '24h' }
             );
