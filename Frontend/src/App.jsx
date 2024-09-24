@@ -14,10 +14,13 @@ import UserDashboard from './pages/Dashboard/UserDashboard.jsx';
 import GetInfo from './pages/Dashboard/GetInfo.jsx';
 import Chat from './components/Chat.jsx';
 import MyChats from './pages/MyChats.jsx';
-import BiddingPage from './components/BiddingRoom.jsx'; 
+import Login from './pages/Login.jsx'
+import BiddingPage from './components/BiddingRoom.jsx';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import UserAuth from './pages/UserAuth.jsx'
+import SearchResults from './pages/Dashboard/SearchResults.jsx'
+import UserProfile from './pages/UserProfile/UserProfile.jsx'
 
 function App() {
   const dummyBidDetails = {
@@ -44,10 +47,12 @@ function App() {
             <Route path='/GetInfo' element={<GetInfo />} />
             <Route path='/chat/:currentUserId/:targetUserId' element={<Chat />} />
             <Route path="/confirm" element={<ConfirmationPage bidDetails={dummyBidDetails} />} />
-            <Route path="/contract" element={<ContractPage contractDetails={dummyBidDetails} />} />
-            
-                <Route path="/my-chats/:userId" element={<MyChats />} /> 
+            <Route path="/contract" element={<ContractPage contractDetails={dummyBidDetails} />} />            
+            <Route path="/my-chats/:userId" element={<MyChats />} />
             <Route path="/bidding" element={<BiddingPage />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/search-results" element={<SearchResults />} />
+            <Route path="/user-profile/:userId/:role" element={<UserProfile />} />
           </Routes>
           <ToastContainer />
         </Container>

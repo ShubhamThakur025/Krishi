@@ -44,8 +44,6 @@ const getBuyer = async (req, res) => {
       });
     }
     return res.status(200).json({
-      message: "Buyer details retrieved successfully!",
-      buyer: {
         buyerId: buyer.buyerId,
         name: buyer.name,
         mobile: buyer.mobile,
@@ -55,8 +53,7 @@ const getBuyer = async (req, res) => {
         category: buyer.category,
         ratings: buyer.ratings,
         filledBids: JSON.parse(buyer.filledBids),
-        confirmedBids: JSON.parse(buyer.confirmedBids),
-      },
+        confirmedBids: JSON.parse(buyer.confirmedBids)
     });
   } catch (error) {
     console.error("Error fetching buyer details:", error);

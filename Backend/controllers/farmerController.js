@@ -44,10 +44,7 @@ const getFarmer = async (req, res) => {
       });
     }
 
-    return res.status(200).json({
-      message: "Farmer details retrieved successfully!",
-      farmer,
-    });
+    return res.status(200).json(farmer);
   } catch (error) {
     console.error("Error fetching farmer details:", error);
     return res.status(500).json({
