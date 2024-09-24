@@ -21,7 +21,7 @@ function UserInfo() {
             .then(response => {
                 console.log(response)
                 toast.success('Registration successfull!')
-                navigate('/dashboard')
+                navigate('/login')
             })
             .catch(err => console.log(err))
     }

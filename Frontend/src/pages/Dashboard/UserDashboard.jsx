@@ -11,6 +11,7 @@ import axios from 'axios'
 
 function UserDashboard() {
     const role = useSelector(state => state.user.choices.role)
+    const choices = useSelector(state => state.user.choices)
     const currentUserId = useSelector(state => state.user.id)
     const navigate = useNavigate()
 
@@ -20,6 +21,7 @@ function UserDashboard() {
     const [isSearchTriggered, setIsSearchTriggered] = useState(false)
 
     useEffect(() => {
+        console.log(choices)
         axios.get('http://localhost:8080/farmer')
             .then(response => setFarmers(response.data.farmers))
             .catch(err => console.error("Error fetching farmers: ", err))

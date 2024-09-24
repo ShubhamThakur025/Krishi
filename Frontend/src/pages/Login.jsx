@@ -6,6 +6,7 @@ import axios from 'axios'
 import { useDispatch } from 'react-redux'
 import { updateChoices } from '../redux/slices/userSlice'
 import { useNavigate } from 'react-router-dom'
+import setCookie from '../utils/setCookie'
 
 function Login() {
     const [mobile, setmobile] = useState('')
@@ -17,6 +18,7 @@ function Login() {
             const response = await axios.post('http://localhost:8080/general/login', { mobile })
             console.log(response.data)
             dispatch(updateChoices(response.data))
+            setCookie('userToken', response.data.token, 1)
             toast.success("Login successfull")
             navigate('/dashboard')
             

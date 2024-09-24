@@ -3,10 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 export const userSlice = createSlice({
     name: 'user',
     initialState: {
-        choices: {
-            language: '',
-            role: ''
-        }
+        choices: {}
     },
     reducers: {
         updateChoices: (state, action) => {
