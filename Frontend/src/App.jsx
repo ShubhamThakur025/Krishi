@@ -16,6 +16,7 @@ import GetInfo from './pages/Dashboard/GetInfo.jsx';
 import FilterBuyer from './pages/Dashboard/FilterBuyer.jsx'
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import KnowledgeHub from "./pages/KnowledgeHub";
 
 function App() {
   return (
@@ -31,6 +32,7 @@ function App() {
             <Route path='/dashboard' element={<UserDashboard />} />
             <Route path='/getInfo' element={<GetInfo />} />
             <Route path='/filterBuyer' element={<FilterBuyer/>}/>
+            < Route path ="/KnowledgeHub" element={<KnowledgeHub/>}/>
           </Routes>
           <ToastContainer />
         </Container>

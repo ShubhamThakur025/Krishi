@@ -1,0 +1,35 @@
+[
+    {
+        "id": 1,
+        "Question": "What is Krishi?",
+        "Answer" : "Krishi is a Web Platform that connects farmers and buyers with proper facilitation On Contract farming and Payment for fulfilled Contracts."
+    },
+    {
+        "id": 2,
+        "Question": "How Can I register On Krishi?",
+        "Answer" : "Our registration Process is highly Simple where you have to select language preference and select whether you're seller or buyer and based on questionaaire registration is done."
+    },
+    {
+        "id": 3,
+        "Question": "Does it Cost to get registered?",
+        "Answer" : "Not at all. Registration on Krishi is absolutely free."
+      
+    },
+    {
+        "id": 4,
+        "Question": "Will everyone Know my Credibility and Portfolio?",
+        "Answer" : "Maintaining Profile and Portfolio is the Key feature of Krishi. At Krishi we believe on maintaining your portfolio and recording your past transactions and histories."
+       
+    },
+    {
+        "id": 5,
+        "Question": "How does Contract farming Works in Krishi?",
+        "Answer" : "Once the negotiation between buyer and farmer Completes, a legal Contract will be generated via your digital Sugnature as a Proof. The Contract Will Contain quality description,price description and every clear information."
+        
+    },
+    {
+        "id": 6,
+        "Question": "How's Bidding Works in Krishi?",
+        "Answer" : "At Krishi, We believe on proper negotation and talks between both parties. Once the rate is finalized by both the parties in chat , the bidding section will open and you mention necessary needs , quantity , quality and prices."  
+    }
+]
