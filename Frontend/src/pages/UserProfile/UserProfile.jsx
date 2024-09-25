@@ -1,24 +1,29 @@
 import React, { useEffect, useState } from "react"
 import { Box, Typography, Button, Card, CardContent, CardMedia } from "@mui/material"
 import { Chat, Mail, Phone } from "@mui/icons-material"
-import axios from "axios" 
+import { useNavigate } from "react-router-dom"
+import { useSelector } from "react-redux"
+import axios from "axios"
 import { useParams } from "react-router-dom"
 import avatar from '../../assets/avatar.jpg'
 import Rating from "./Rating"
 
 function UserProfile() {
-    const { userId, role } = useParams()   
-    const [user, setUser] = useState(null) 
+    const currentUserId = useSelector(state => state.user.choices.id)
+    const { userId, role } = useParams()
+    const [user, setUser] = useState(null)
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState(null)
+    const navigate = useNavigate()
 
-    const fetchUserData = async() => {
+    const fetchUserData = async () => {
+        console.log(currentUserId)
         try {
-            const uri = role === 'farmer' 
-                ? `http://localhost:8080/farmer/${userId}` 
+            const uri = role === 'farmer'
+                ? `http://localhost:8080/farmer/${userId}`
                 : `http://localhost:8080/buyer/${userId}`
             const response = await axios.get(uri)
-            setUser(response.data) 
+            setUser(response.data)
         } catch (err) {
             setError("Error fetching user data")
             console.error("Error:", err)
@@ -26,6 +31,10 @@ function UserProfile() {
             setLoading(false)
         }
     }
+
+    const startChat = (targetUserId, targetUserName) => {
+        navigate(`/chat/${currentUserId}/${targetUserId}/${targetUserName}`);
+    };
 
     useEffect(() => {
         fetchUserData()
@@ -49,13 +58,14 @@ function UserProfile() {
                     कृषि
                 </Typography>
             </Box>
-            <Box sx={{ display: 'flex', justifyContent: 'between', my: 5 }}>
+            <Box sx={{ display: 'flex', justifyContent: 'between', my: 5, p: 3 }}>
                 <Card sx={{ backgroundColor: "grey.100", mx: 3, p: 3, width: 250 }}>
                     <CardMedia component="img" image={avatar} alt="User Avatar" />
                     <CardContent>
                         <Typography variant="h6">{user.name}</Typography>
                         <Typography variant="body2" color="text.secondary">
-                            {user.description || "Best in the region, trusted by thousands."}
+                            {user.mobile} <br />
+                            {user.location}
                         </Typography>
                     </CardContent>
                 </Card>
@@ -66,7 +76,7 @@ function UserProfile() {
                 Connect
             </Typography>
             <Box sx={{ display: 'flex', justifyContent: 'flex-start', mx: 5, my: 4 }}>
-                <Card sx={{ width: 180, backgroundColor: 'grey.100', textAlign: 'center', p: 3, mr: 3 }}>
+                <Card sx={{ width: 180, backgroundColor: 'grey.100', textAlign: 'center', p: 3, mr: 3 }} onClick={() => startChat(user.farmerId || user.buyerId, user.name)}>
                     <Chat sx={{ fontSize: 40, color: 'black' }} />
                     <Typography variant="h6" sx={{ mt: 1 }}>Chat</Typography>
                 </Card>

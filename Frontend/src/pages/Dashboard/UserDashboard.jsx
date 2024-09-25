@@ -12,7 +12,7 @@ import axios from 'axios'
 function UserDashboard() {
     const role = useSelector(state => state.user.choices.role)
     const choices = useSelector(state => state.user.choices)
-    const currentUserId = useSelector(state => state.user.id)
+    const currentUserId = useSelector(state => state.user.choices.id)
     const navigate = useNavigate()
 
     const [farmers, setFarmers] = useState([])
@@ -136,7 +136,7 @@ function UserDashboard() {
 
                 <Box sx={{ display: 'flex', justifyContent: "center", mt: 4 }}>
                     {buyers.map(buyer => (
-                        <Card sx={{ backgroundColor: "grey.100", mx: 3, p: 3, width: 250 }} key={buyer.buyerId}>
+                        <Card sx={{ backgroundColor: "grey.100", mx: 2, p: 3, width: 250, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }} key={buyer.buyerId}>
                             <CardMedia component="img" image={avatar} alt={buyer.name} />
                             <CardContent>
                                 <Typography variant="h6">{buyer.name}</Typography>
@@ -144,8 +144,8 @@ function UserDashboard() {
                                     Best in the region, trusted by thousands.
                                 </Typography>
                             </CardContent>
-                            <Button variant="contained" sx={{ width: 200, mx: 'auto', my: 3 }} onClick={() => startChat(buyer.buyerId)}>
-                                Start Chat
+                            <Button variant="contained" sx={{ width: 200, mx: 'auto', my: 3 }} onClick={() => viewUserProfile(buyer.buyerId, 'buyer')}>
+                                Visit
                             </Button>
                         </Card>
                     ))}

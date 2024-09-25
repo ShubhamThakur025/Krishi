@@ -55,11 +55,11 @@ function App() {
             <Route path='/finish' element={<UserInfo />} />
             <Route path='/dashboard' element={token ? <UserDashboard /> : <Navigate to="/" replace />} />
             <Route path='/GetInfo' element={token ? <GetInfo /> : <Navigate to="/" replace />} />
-            <Route path='/chat/:currentUserId/:targetUserId' element={token ? <Chat /> : <Navigate to="/" replace />} />
+            <Route path='/chat/:currentUserId/:targetUserId/:targetUserName' element={token ? <Chat /> : <Navigate to="/" replace />} />
             <Route path="/confirm" element={token ? <ConfirmationPage bidDetails={dummyBidDetails} /> : <Navigate to="/" replace />} />
             <Route path="/contract" element={token ? <ContractPage contractDetails={dummyBidDetails} /> : <Navigate to="/" replace />} />
             <Route path="/my-chats/:userId" element={token ? <MyChats /> : <Navigate to="/" replace />} />
-            <Route path="/bidding" element={token ? <BiddingPage /> : <Navigate to="/" replace />} />
+            <Route path="/bidding/:currentUserId/:targetUserId/:targetUserName" element={token ? <BiddingPage /> : <Navigate to="/" replace />} />
             <Route path="/login" element={<Login />} />
             <Route path="/search-results" element={token ? <SearchResults /> : <Navigate to="/" replace />} />
             <Route path="/user-profile/:userId/:role" element={token ? <UserProfile /> : <Navigate to="/" replace />} />
