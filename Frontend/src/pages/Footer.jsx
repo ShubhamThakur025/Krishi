@@ -1,6 +1,7 @@
 import React from 'react';
 import krishiLogo from "../assets/krishi-logo.png"
-import { Container, Typography, Link, Grid, Box, Divider } from '@mui/material';
+import { Link } from 'react-router-dom';
+import { Container, Typography, Grid, Box, Divider , Button } from '@mui/material';
 
 function Footer() {
     return (
@@ -28,6 +29,10 @@ function Footer() {
                                 <Link href="#" variant="body2" color="inherit">Blog</Link><br />
                                 <Link href="#" variant="body2" color="inherit">Weather Forecast</Link><br />
                                 <Link href="#" variant="body2" color="inherit">How to use the application?</Link>
+                                <Link to='/KnowledgeHub'> 
+                                <Button variant="contained" sx={{ width: 200, mx: 'auto', my: 3 }}>Knowledge Hub</Button>
+                                </Link>
+
                             </Grid>
                         </Grid>
                     </Grid>
