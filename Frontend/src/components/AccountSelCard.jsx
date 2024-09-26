@@ -1,7 +1,7 @@
 import React from 'react'
 import { Card, CardContent, Typography } from '@mui/material';
 
-function LanguageSelCard({ name, descEng, descHindi, handleChoice}) {
+function AccountSelCard({ name, descEng, descHindi, handleChoice}) {
     return (
         <Card onClick={() => handleChoice(name)} sx={{ p: 1, width: 320, height: 290, display: 'flex', textAlign: 'left', backgroundColor: 'grey.100', justifyContent: 'center', alignItems: 'center' }}>
             <CardContent>
@@ -19,4 +19,4 @@ function LanguageSelCard({ name, descEng, descHindi, handleChoice}) {
     )
 }
 
-export default LanguageSelCard
+export default AccountSelCard
