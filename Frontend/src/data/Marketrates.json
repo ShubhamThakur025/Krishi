@@ -1,0 +1,63 @@
+[
+    {
+        "id" : 1 ,
+        "name" : "Tomato",
+        "price/kg" : "Rs 30",
+        "price/quintal" : "Rs 2500"
+    },
+      {
+        "id" : 2 ,
+        "name" : "Potato",
+        "price/kg" : "Rs 25",
+        "price/quintal" : "Rs 2000"
+    },
+       {
+        "id" : 3 ,
+        "name" : "Wheat",
+        "price/kg" : "Rs 30",
+        "price/quintal" : "Rs 2700"
+    },
+
+      {
+        "id" : 4 ,
+        "name" : "Onion",
+        "price/kg" : "Rs 30",
+        "price/quintal" : "Rs 2800"
+    },
+  {
+        "id" : 5 ,
+        "name" : "Paddy",
+        "price/kg" : "Rs 20",
+        "price/quintal" : "Rs 1800"
+    },
+  {
+        "id" : 6 ,
+        "name" : "Pulses",
+        "price/kg" : "Rs 40",
+        "price/quintal" : "Rs 3600"
+    },
+  {
+        "id" : 7 ,
+        "name" : "Turmeric Powder",
+        "price/kg" : "Rs 50",
+        "price/quintal" : "Rs 4800"
+    },
+  {
+        "id" : 8 ,
+        "name" : "Cabbage",
+        "price/kg" : "Rs 35",
+        "price/quintal" : "Rs 3000"
+    },
+  {
+        "id" : 9 ,
+        "name" : "Sugarcane",
+        "price/kg" : "Rs 70",
+        "price/quintal" : "Rs 6500"
+    },
+      {
+        "id" : 10 ,
+        "name" : "Tea",
+        "price/kg" : "Rs 60",
+        "price/quintal" : "Rs 5500"
+    }
+]
