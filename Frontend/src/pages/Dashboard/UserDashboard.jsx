@@ -54,10 +54,6 @@ function UserDashboard() {
     const filteredFarmers = farmers.filter(farmer => farmer.name.toLowerCase().includes(searchTerm.toLowerCase()))
     const filteredBuyers = buyers.filter(buyer => buyer.name.toLowerCase().includes(searchTerm.toLowerCase()))
 
-    const viewChats = () => {
-        navigate(`/my-chats/${currentUserId}`)
-    }
-
     return (
         <>
             <Box>
@@ -68,7 +64,7 @@ function UserDashboard() {
                     <Typography variant="h3" color='primary' sx={{ fontWeight: 'bold', ml: 3 }}>
                         कृषि
                     </Typography>
-                    <Button variant="outlined" sx={{ position: 'absolute', right: '20px', top: '20px' }} onClick={viewChats}>
+                    <Button variant="outlined" sx={{ position: 'absolute', right: '20px', top: '20px' }}>
                         My Chats
                     </Button>
                 </Box>
